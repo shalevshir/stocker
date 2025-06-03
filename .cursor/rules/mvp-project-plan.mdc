@@ -5,19 +5,19 @@ alwaysApply: true
 ---
 # AI-Powered Stock-Market Assistant — Lean MVP Project Plan
 
-## Phase 0: Project Kick-off & Environment
+## Phase 0: Project Kick-off & Environment ✅ (Completed)
 
-* [ ] Create GitHub repo
-* [ ] Spin up AWS EC2 instance (t3.small, 50 GB gp3)
-* [ ] Install Docker, git, Python
-* [ ] Set up `.env` with API keys and Telegram token
+* [x] Create GitHub repo
+* [x] Spin up AWS EC2 instance (t3.small, 50 GB gp3)
+* [x] Install Docker, git, Python
+* [x] Set up `.env` with API keys and Telegram token
 
 **QA / Validation:**
 
 * SSH access verified ✔️
 * Basic Python environment set ✔️
 
-## Phase 1: Minimal Data Ingestion Pipeline
+## Phase 1: Minimal Data Ingestion Pipeline (In Progress)
 
 * [ ] Design simplified PostgreSQL schema (`prices`, `fundamentals`, `news_sentiment`)
 * [ ] Implement EODHistoricalData fetcher (prices only, 5-year history for top 50 S\&P 500 and TA-125)
