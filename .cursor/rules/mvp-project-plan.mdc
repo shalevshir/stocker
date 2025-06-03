@@ -1,0 +1,94 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# AI-Powered Stock-Market Assistant — Lean MVP Project Plan
+
+## Phase 0: Project Kick-off & Environment
+
+* [ ] Create GitHub repo
+* [ ] Spin up AWS EC2 instance (t3.small, 50 GB gp3)
+* [ ] Install Docker, git, Python
+* [ ] Set up `.env` with API keys and Telegram token
+
+**QA / Validation:**
+
+* SSH access verified ✔️
+* Basic Python environment set ✔️
+
+## Phase 1: Minimal Data Ingestion Pipeline
+
+* [ ] Design simplified PostgreSQL schema (`prices`, `fundamentals`, `news_sentiment`)
+* [ ] Implement EODHistoricalData fetcher (prices only, 5-year history for top 50 S\&P 500 and TA-125)
+* [ ] Basic sentiment via NewsAPI
+* [ ] Cron scripts for nightly data ingestion
+
+**QA / Validation:**
+
+* Data ingested correctly for selected tickers
+* Price data matches publicly available sources
+
+## Phase 2: Simplified Feature Engineering
+
+* [ ] Calculate basic technical indicators (moving averages, RSI)
+* [ ] Calculate essential fundamental ratios (P/E, EPS growth)
+* [ ] Daily sentiment score aggregation
+
+**QA / Validation:**
+
+* Indicators match manual checks
+* Minimal null values
+
+## Phase 3: Lightweight Modelling & Back-testing
+
+* [ ] Prepare dataset for basic ML model
+* [ ] Train simple LightGBM model (minimal tuning)
+* [ ] Perform basic back-test (1-year historical validation)
+
+**QA / Validation:**
+
+* Basic model training and prediction verified
+* Back-test results documented
+
+## Phase 4: Basic Signal Generation
+
+* [ ] Daily inference to generate signals
+* [ ] Simple ranking system for signal strength
+* [ ] Store daily signals
+
+**QA / Validation:**
+
+* Daily signals generated consistently
+* Signals correctly ranked
+
+## Phase 5: Telegram Bot Integration
+
+* [ ] Set up Telegram bot
+* [ ] Minimal bot service for sending daily signals
+* [ ] Inline feedback buttons (👍 / 👎)
+
+**QA / Validation:**
+
+* Telegram bot operational
+* Feedback correctly logged
+
+## Phase 6: Quick Alpha (Paper-Trading)
+
+* [ ] Run complete nightly cycle for 1 week
+* [ ] Review basic metrics
+
+**QA / Validation:**
+
+* Nightly tasks completed without errors
+* Feedback correlation with actual performance noted
+
+## Phase 7: Evaluation & Adjustments
+
+* [ ] Gather insights from alpha testing
+* [ ] Identify critical improvements
+
+**QA / Validation:**
+
+* Identified adjustments clearly documented
+* Plan updates ready for next iteration

@@ -1,0 +1,118 @@
+# AI-Powered Stock-Market Assistant — End-to-End Project Plan
+
+## Phase 0: Project Kick-off & Environment
+
+* [ ] Create GitHub repo and branch-protection rules
+* [ ] Spin up AWS EC2 instance (t3.medium, 100 GB gp3, static IP)
+* [ ] Install Docker, Docker Compose, git, make
+* [ ] Generate `.env.template` with placeholders for API keys, DB, Telegram token
+* [ ] Configure GitHub Actions workflow: black + ruff, pytest, docker-build
+
+**QA / Validation:**
+
+* SSH access from dev workstation ✔️
+* `docker run hello-world` executes without error ✔️
+* CI workflow passes on first dummy commit ✔️
+
+## Phase 1: Data Ingestion Pipeline
+
+* [ ] Design PostgreSQL schema (`prices`, `fundamentals`, `news_raw`, `tweets_raw`, `meta_tickers`)
+* [ ] Write **EODHistoricalData** fetcher (prices + corporate actions)
+* [ ] Back-fill 15 years for S\&P 500, full history for TA-125
+* [ ] Implement TASE Maya filings scraper (RSS → JSON → DB)
+* [ ] Add NewsAPI nightly pull (headline, url, published\_at)
+* [ ] Add Twitter search on ticker cashtags (last 24 h, EN + HE)
+* [ ] Dockerize each fetcher as a lightweight image
+* [ ] Author Airflow DAG `ingest_daily` with task-group per datasource
+
+**QA / Validation:**
+
+* Data coverage ≥ 98%
+* Spot-check prices match Yahoo Finance ±0.01%
+* DAG SLA: all tasks finish < 15 min
+
+## Phase 2: Feature Engineering Layer
+
+* [ ] Build Timescale continuous aggregates for OHLCV resampling
+* [ ] Compute technical indicators via **pandas-ta**
+* [ ] Calculate fundamental ratios
+* [ ] Train/validate **FinBERT** model; infer news sentiment
+* [ ] Derive social-sentiment score
+* [ ] Store engineered features in `features_daily`
+
+**QA / Validation:**
+
+* Feature calculations validated against TA-Lib
+* Null/NaN ratio < 0.5%
+* Feature-drift stable week-over-week
+
+## Phase 3: Modelling & Back-testing
+
+* [ ] Assemble training dataset
+* [ ] LightGBM pipeline with MLflow autolog
+* [ ] Hyper-param tuning (Optuna)
+* [ ] Walk-forward back-test
+* [ ] Strategy rules and tear-sheet
+
+**QA / Validation:**
+
+* MLflow logging complete
+* Back-test reproducible
+* Sensitivity to slippage < 2pp impact
+
+## Phase 4: Signal Generation Service
+
+* [ ] Daily inference script
+* [ ] Rank stocks and generate signals
+* [ ] SHAP explanations
+
+**QA / Validation:**
+
+* Signal generation constraints
+* Daily signal consistency
+
+## Phase 5: Telegram Bot Integration
+
+* [ ] Create Telegram bot
+* [ ] Build async bot micro-service
+* [ ] Message formatting and feedback capture
+
+**QA / Validation:**
+
+* Telegram messages delivered
+* Feedback captured correctly
+
+## Phase 6: End-to-End Alpha (Paper-Trading)
+
+* [ ] Full nightly DAG activation
+* [ ] Two-week simulation
+* [ ] Dashboard for review
+
+**QA / Validation:**
+
+* Zero task failures for 7 days
+* Feedback-return correlation ≥ 0.3
+
+## Phase 7: Beta Launch & Drift Monitoring
+
+* [ ] Whitelist pilot users
+* [ ] Drift monitoring with **evidently-ai**
+* [ ] Monthly retrain and CI/CD deployment
+
+**QA / Validation:**
+
+* Drift alerting
+* Canary testing on model updates
+
+## Phase 8: Production Roll-out & Maintenance
+
+* [ ] Public bot launch
+* [ ] Nightly S3 backups
+* [ ] Anomaly-detection on equity curve
+* [ ] Quarterly model reviews
+
+**QA / Validation:**
+
+* Disaster recovery capability
+* SLA monitoring
+* Compliance checks

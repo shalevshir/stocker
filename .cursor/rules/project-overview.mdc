@@ -1,0 +1,59 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project Overview: AI-Powered Stock-Market Assistant
+
+## Objective
+
+To develop an AI-powered assistant that provides users with actionable daily stock market insights and trade recommendations, leveraging data-driven analyses and machine learning models.
+
+## What We Want to Achieve
+
+* **Automated Data Ingestion:** Collect reliable market data, including stock prices, fundamental financial metrics, news sentiment, and social media insights.
+* **Feature Engineering:** Derive meaningful financial indicators and sentiment scores to enrich data.
+* **Predictive Modeling:** Train a robust machine learning model to identify trading opportunities and generate clear, actionable signals.
+* **User Interaction:** Deliver daily trade signals via an intuitive Telegram bot interface and collect user feedback for continuous improvement.
+* **Iterative Enhancement:** Continuously refine and validate the system through paper trading, performance evaluation, and incremental updates.
+
+## How We Plan to Achieve It
+
+### 1. Environment Setup
+
+* AWS infrastructure for scalable and reliable hosting.
+* Docker and GitHub workflows for standardized development and deployment.
+
+### 2. Data Collection
+
+* Gather historical stock prices using EODHistoricalData API.
+* Aggregate relevant financial news through NewsAPI.
+* Initial focus on key market indices (S\&P 500, TA-125).
+
+### 3. Data Processing
+
+* PostgreSQL to structure data efficiently.
+* Automate nightly data ingestion via scheduled tasks.
+
+### 4. Analysis and Modeling
+
+* Compute key technical and fundamental indicators (e.g., moving averages, RSI, P/E ratios).
+* Implement basic sentiment analysis for additional market context.
+* Employ a LightGBM model for predictive insights and perform rigorous back-testing.
+
+### 5. Signal Generation
+
+* Generate daily trade signals with clear strength rankings.
+* Leverage machine learning predictions to inform signal accuracy and reliability.
+
+### 6. User Interface
+
+* Telegram bot integration for accessible daily notifications.
+* Incorporate a feedback mechanism for user ratings to fine-tune model performance.
+
+### 7. Validation and Iteration
+
+* Conduct regular performance evaluations through simulated trading scenarios.
+* Identify key areas for improvement and iteratively enhance model accuracy and signal quality.
+
+This strategic and phased approach ensures a lean, efficient, and effective solution tailored for clear and actionable stock market decision support.

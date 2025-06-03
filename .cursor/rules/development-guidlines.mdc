@@ -1,0 +1,66 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Development Guidelines: AI-Powered Stock-Market Assistant
+
+## General Principles
+
+* **Code Quality:** Follow clean code practices (clear naming, single responsibility, modular functions).
+* **Documentation:** Maintain clear inline comments and detailed README files.
+* **Version Control:** Use consistent Git branching and commit conventions.
+
+## Technology Stack
+
+* **Backend:** Python
+* **Data Storage:** PostgreSQL
+* **Machine Learning:** LightGBM
+* **Containerization:** Docker
+* **Cloud Provider:** AWS
+
+## Development Workflow
+
+* **GitHub Management:**
+
+  * Work on feature branches (`feature/`), merge to main through pull requests.
+
+* **Docker:**
+
+  * Provide Dockerfiles for reproducible builds.
+  * Ensure Docker Compose scripts exist for local environment setups.
+
+* **Testing:**
+
+  * Write unit tests for all critical functions using `pytest`.
+  * Integration tests for complete workflows.
+
+* **Continuous Integration (CI):**
+
+  * Set up GitHub Actions workflows.
+  * Enforce automated linting (`black`, `ruff`) and testing (`pytest`).
+
+## Deployment and Infrastructure
+
+* Deploy via AWS EC2 instances.
+* Automate deployments using GitHub Actions.
+* Regular backups and disaster recovery plans are mandatory.
+
+## Database Management
+
+* Document all schema changes.
+* Use migration scripts for schema evolution.
+
+## Machine Learning
+
+* Clearly document training data, hyperparameters, and evaluation metrics.
+* Use MLflow or similar tools for tracking experiments.
+* Ensure reproducibility of model training and results.
+
+## Monitoring and Logging
+
+* Centralized logging for backend services.
+* Track key performance indicators (latency, error rates, prediction accuracy).
+* Regularly monitor model drift and performance degradation.
+
+Adhering to these guidelines will ensure consistency, maintainability, and high-quality deliverables throughout the project lifecycle.
