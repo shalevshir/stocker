@@ -83,4 +83,9 @@ Desktop.ini
 
 # AWS
 *.pem
-.aws/ 
+.aws/
+
+# Python virtual environments
+venv/
+.venv/
+stocker-venv/ 
