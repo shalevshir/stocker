@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: stocker
+      POSTGRES_PASSWORD: stockerpass
+      POSTGRES_DB: stockerdb
+    ports:
+      - "54320:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    env_file: .env
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    command: python --version  # Change to your main script later
+
+volumes:
+  pgdata: 
