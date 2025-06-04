@@ -5,10 +5,12 @@ from stocker.models import Fundamental
 from stocker.tickers import TICKERS
 import datetime
 from stocker.logger import get_logger
-
+import os       
 logger = get_logger(__name__)
 
-DATABASE_URL = "postgresql+psycopg2://stocker:stockerpass@localhost:54320/stockerdb"
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable not set.")    
 
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)

@@ -14,7 +14,9 @@ logger = get_logger(__name__)
 # Load environment variables
 load_dotenv()
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
-DATABASE_URL = "postgresql+psycopg2://stocker:stockerpass@localhost:54320/stockerdb"
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable not set.")
 
 # NewsAPI endpoint template
 NEWS_URL = "https://newsapi.org/v2/everything?q={ticker}&apiKey={api_key}&language=en&pageSize=10"

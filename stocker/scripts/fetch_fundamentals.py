@@ -9,8 +9,9 @@ from stocker.tickers import TICKERS
 # Load environment variables
 load_dotenv()
 EOD_API_KEY = os.getenv("EOD_API_KEY")
-DATABASE_URL = "postgresql+psycopg2://stocker:stockerpass@localhost:54320/stockerdb"
-
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable not set.")    
 # EOD Fundamentals endpoint template
 EOD_URL = "https://eodhistoricaldata.com/api/fundamentals/{ticker}.US?api_token={api_key}"
 
