@@ -63,4 +63,41 @@ alwaysApply: true
 * Track key performance indicators (latency, error rates, prediction accuracy).
 * Regularly monitor model drift and performance degradation.
 
+## Additional Development Guidelines
+
+## Project Structure & Imports
+- Organize all Python code inside a dedicated package directory (e.g., `stocker/`).
+- Use absolute imports within the package for clarity and reliability.
+- Add `__init__.py` files to all package directories.
+
+## Logging
+- Use a centralized, reusable logger utility (e.g., `stocker/logger.py`) for consistent logging across all scripts and modules.
+- Prefer `logging` over `print` for all output except for CLI tools.
+
+## Testing
+- All new features and scripts should include corresponding unit tests using `pytest`.
+- Mock external API calls and database interactions in tests to ensure fast, reliable, and isolated test runs.
+- Store tests in a top-level `tests/` directory, with filenames starting with `test_`.
+
+## Environment & Dependency Management
+- Always use a virtual environment (`.venv/` or `stocker-venv/`).
+- Keep `requirements.txt` up to date and include all dependencies (including dev dependencies like `pytest`, `yfinance`, `textblob`).
+- Never commit virtual environment directories or sensitive files (e.g., `.env`).
+
+## Script Execution
+- Run scripts and tests from the project root, using `python -m stocker.scripts.script_name` for scripts and `pytest` for tests.
+- Set `PYTHONPATH=.` when running tests to ensure package imports work.
+
+## Version Control
+- Commit changes in logical, well-separated chunks (feature, refactor, test, chore, etc.).
+- Write clear, descriptive commit messages following a consistent convention (e.g., Conventional Commits).
+
+## Continuous Integration
+- Ensure all tests pass locally before pushing.
+- (Optional) Set up CI to run tests and linting on every push.
+
+## Documentation
+- Document all scripts, modules, and functions with clear docstrings.
+- Update the project README and guideline docs as the project evolves.
+
 Adhering to these guidelines will ensure consistency, maintainability, and high-quality deliverables throughout the project lifecycle.
