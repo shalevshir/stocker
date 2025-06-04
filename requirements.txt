@@ -7,3 +7,4 @@ lightgbm
 python-dotenv 
 textblob
 yfinance
+pytest
