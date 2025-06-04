@@ -48,4 +48,18 @@ class Feedback(Base):
     signal_id = Column(UUID(as_uuid=True), nullable=False, primary_key=True)
     user_id = Column(String, primary_key=True)
     feedback_value = Column(Integer)  # 1 (👍), -1 (👎), or 0 (neutral)
-    submitted_at = Column(TIMESTAMP) 
+    submitted_at = Column(TIMESTAMP)
+
+class TechnicalIndicator(Base):
+    __tablename__ = 'technical_indicators'
+    id = Column(Integer, primary_key=True)
+    ticker = Column(String, nullable=False)
+    date = Column(Date, nullable=False)
+    ma_5 = Column(Numeric)
+    ma_20 = Column(Numeric)
+    ma_50 = Column(Numeric)
+    rsi_14 = Column(Numeric)
+    created_at = Column(TIMESTAMP)
+    updated_at = Column(TIMESTAMP)
+    # Optionally, add a UniqueConstraint for (ticker, date) if not handled by the DB
+    # __table_args__ = (UniqueConstraint('ticker', 'date', name='uix_ticker_date'),) 
