@@ -80,7 +80,7 @@ alwaysApply: true
 - Store tests in a top-level `tests/` directory, with filenames starting with `test_`.
 
 ## Environment & Dependency Management
-- Always use a virtual environment (`.venv/` or `stocker-venv/`).
+- Always use a virtual environment (`.venv/`).
 - Keep `requirements.txt` up to date and include all dependencies (including dev dependencies like `pytest`, `yfinance`, `textblob`).
 - Never commit virtual environment directories or sensitive files (e.g., `.env`).
 
