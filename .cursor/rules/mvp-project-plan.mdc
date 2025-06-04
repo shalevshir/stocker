@@ -17,12 +17,12 @@ alwaysApply: true
 * SSH access verified ✔️
 * Basic Python environment set ✔️
 
-## Phase 1: Minimal Data Ingestion Pipeline (In Progress)
+## Phase 1: Minimal Data Ingestion Pipeline ✅ (Completed)
 
-* [ ] Design simplified PostgreSQL schema (`prices`, `fundamentals`, `news_sentiment`)
-* [ ] Implement EODHistoricalData fetcher (prices only, 5-year history for top 50 S\&P 500 and TA-125)
-* [ ] Basic sentiment via NewsAPI
-* [ ] Cron scripts for nightly data ingestion
+* [x] Design simplified PostgreSQL schema (`prices`, `fundamentals`, `news_sentiment`)
+* [x] Implement EODHistoricalData fetcher (prices only, 5-year history for top 50 S\&P 500 and TA-125)
+* [x] Basic sentiment via NewsAPI
+* [x] Cron scripts for nightly data ingestion
 
 **QA / Validation:**
 
