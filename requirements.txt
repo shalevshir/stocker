@@ -6,3 +6,4 @@ requests
 lightgbm
 python-dotenv 
 textblob
+yfinance
