@@ -4,6 +4,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.sql import func
 
 Base = declarative_base()
 
@@ -59,7 +60,7 @@ class TechnicalIndicator(Base):
     ma_20 = Column(Numeric)
     ma_50 = Column(Numeric)
     rsi_14 = Column(Numeric)
-    created_at = Column(TIMESTAMP)
-    updated_at = Column(TIMESTAMP)
+    created_at = Column(TIMESTAMP, server_default=func.now())
+    updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
     # Optionally, add a UniqueConstraint for (ticker, date) if not handled by the DB
     # __table_args__ = (UniqueConstraint('ticker', 'date', name='uix_ticker_date'),) 

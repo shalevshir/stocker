@@ -20,7 +20,7 @@ def moving_average(series: pd.Series, window: int) -> pd.Series:
 
 def rsi(series: pd.Series, window: int = 14) -> pd.Series:
     """
-    Calculate the Relative Strength Index (RSI).
+    Calculate the Relative Strength Index (RSI) using the standard EMA method.
     Args:
         series (pd.Series): Series of prices (e.g., closing prices).
         window (int): Number of periods for RSI calculation (default: 14).
@@ -28,10 +28,10 @@ def rsi(series: pd.Series, window: int = 14) -> pd.Series:
         pd.Series: RSI values (NaN for periods with insufficient data).
     """
     delta = series.diff()
-    gain = np.where(delta > 0, delta, 0)
-    loss = np.where(delta < 0, -delta, 0)
-    avg_gain = pd.Series(gain).rolling(window=window, min_periods=window).mean()
-    avg_loss = pd.Series(loss).rolling(window=window, min_periods=window).mean()
+    gain = delta.where(delta > 0, 0.0)
+    loss = -delta.where(delta < 0, 0.0)
+    avg_gain = gain.ewm(alpha=1/window, min_periods=window, adjust=False).mean()
+    avg_loss = loss.ewm(alpha=1/window, min_periods=window, adjust=False).mean()
     rs = avg_gain / avg_loss
     rsi = 100 - (100 / (1 + rs))
-    return pd.Series(rsi, index=series.index) 
+    return rsi 
