@@ -7,6 +7,9 @@ from dotenv import load_dotenv
 from datetime import datetime
 from textblob import TextBlob
 from stocker.tickers import TICKERS
+from stocker.logger import get_logger
+
+logger = get_logger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -29,7 +32,7 @@ def fetch_and_store_news_sentiment(ticker):
     url = NEWS_URL.format(ticker=ticker, api_key=NEWS_API_KEY)
     response = requests.get(url)
     if response.status_code != 200:
-        print(f"Failed to fetch news for {ticker}: {response.text}")
+        logger.error(f"Failed to fetch news for {ticker}: {response.text}")
         return
     data = response.json()
     for article in data.get("articles", []):
@@ -46,7 +49,7 @@ def fetch_and_store_news_sentiment(ticker):
         )
         session.add(news)
     session.commit()
-    print(f"Inserted news sentiment for {ticker}")
+    logger.info(f"Inserted news sentiment for {ticker}")
 
 def main():
     for ticker in TICKERS:

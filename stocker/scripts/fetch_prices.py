@@ -5,6 +5,9 @@ from sqlalchemy.orm import sessionmaker
 from stocker.models import Price
 from dotenv import load_dotenv
 from stocker.tickers import TICKERS
+from stocker.logger import get_logger
+
+logger = get_logger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -23,7 +26,7 @@ def fetch_and_store_prices(ticker):
     url = EOD_URL.format(ticker=ticker, api_key=EOD_API_KEY)
     response = requests.get(url)
     if response.status_code != 200:
-        print(f"Failed to fetch {ticker}: {response.text}")
+        logger.error(f"Failed to fetch {ticker}: {response.text}")
         return
     data = response.json()
     for row in data:
@@ -39,7 +42,7 @@ def fetch_and_store_prices(ticker):
         )
         session.merge(price)  # Upsert
     session.commit()
-    print(f"Inserted/updated prices for {ticker}")
+    logger.info(f"Inserted/updated prices for {ticker}")
 
 def main():
     for ticker in TICKERS:
